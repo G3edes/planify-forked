@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo img {
+  width: 140px;
+  height: 140px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+.menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.perfil {
+  max-width: 700px;
+  margin: auto;
+  border: 4px solid #007bff;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.perfil-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfil img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #a8d4ff;
+  margin-bottom: 20px;
+}
+
+.perfil p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.perfil button {
+  margin-top: 15px;
+  background-color: #3399ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.perfil button:hover {
+  background-color: #007bff;
+}
