@@ -32,7 +32,6 @@ document.getElementById("botao-comprar").addEventListener("click", async () => {
   const payload = {
     id_usuario: usuario.id_usuario,
     id_evento: evento.id_evento,
-    quantidade: quantidade
   };
 
   try {
@@ -43,8 +42,20 @@ document.getElementById("botao-comprar").addEventListener("click", async () => {
     });
 
     if (resposta.ok) {
+      // Buscar dados atualizados do usuário
+      const respostaUsuario = await fetch(`http://localhost:8080/v1/planify/usuario/${usuario.id_usuario}`);
+      if (!respostaUsuario.ok) throw new Error('Erro ao buscar dados atualizados do usuário.');
+      
+      const dadosAtualizados = await respostaUsuario.json();
+      const usuarioAtualizado = dadosAtualizados.usuario?.[0];
+
+      if (usuarioAtualizado) {
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
+      }
+
       alert("Ingresso(s) comprado(s) com sucesso!");
-      window.location.href = "pagamento.html";
+      // Redireciona para home.html conforme você pediu
+      window.location.href = "home.html";
     } else {
       const erro = await resposta.json();
       alert(`Erro ao comprar ingresso: ${erro.message || resposta.statusText}`);

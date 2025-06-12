@@ -120,8 +120,8 @@ function renderizarEventos(eventos) {
     const categoria = Array.isArray(e.categoria)
       ? e.categoria.map(cat => cat.categoria).join(", ")
       : "Sem categoria"
-
-    const idEstado = e.estado?.id_estado;
+      console.log(todosEventos)
+    const idEstado = e.id_estado; // 'id_estado' está diretamente no objeto do evento
     const nomeEstado = idEstado ? (estadosMap[idEstado] || "Não identificado") : "Não identificado";
 
     const data = new Date(e.data_evento).toLocaleDateString('pt-BR')
