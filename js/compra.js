@@ -13,3 +13,44 @@ if (evento) {
 } else {
   document.querySelector('.card').innerHTML = '<p>Nenhum evento selecionado.</p>';
 }
+
+document.getElementById("botao-comprar").addEventListener("click", async () => {
+  const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+  const evento = JSON.parse(localStorage.getItem("eventoSelecionado"));
+  const quantidade = parseInt(document.getElementById("quantidade").value);
+
+  if (!usuario || !evento) {
+    alert("Erro: usuário ou evento não encontrado.");
+    return;
+  }
+
+  if (isNaN(quantidade) || quantidade < 1) {
+    alert("Por favor, selecione uma quantidade válida de ingressos.");
+    return;
+  }
+
+  const payload = {
+    id_usuario: usuario.id_usuario,
+    id_evento: evento.id_evento,
+    quantidade: quantidade
+  };
+
+  try {
+    const resposta = await fetch("http://localhost:8080/v1/planify/participar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (resposta.ok) {
+      alert("Ingresso(s) comprado(s) com sucesso!");
+      window.location.href = "pagamento.html";
+    } else {
+      const erro = await resposta.json();
+      alert(`Erro ao comprar ingresso: ${erro.message || resposta.statusText}`);
+    }
+  } catch (erro) {
+    alert("Erro ao conectar com o servidor.");
+    console.error(erro);
+  }
+});
